@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Объявления {% endblock %}
+{% block content %}
+    <h1> ОБЪЯВЛЕНИЯ </h1>
+    {% for ad in ads %}
+        <h3>{{ ad.title }}</h3> <!--используем двойные }}, чтобы отображался не текст-->
+        <p>
+            {{ ad.body|truncatewords:10 }} <!-- первые N слов-->
+        </p>
+        Published: {{ ad.publish }} by {{ ad.author }}
+    {% endfor %}
+{% endblock %}
