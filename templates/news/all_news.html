@@ -4,9 +4,9 @@
     <h1> НОВОСТИ </h1>
     {% for one_news in news %}
         <h3>{{ one_news.title }}</h3> <!--используем двойные }}, чтобы отображался не текст-->
-        <p>
+        <h4>
             {{ one_news.body|truncatewords:10 }} <!-- первые N слов-->
-        </p>
+        </h4>
         Published: {{ one_news.publish }} by {{ one_news.author }}
     {% endfor %}
 {% endblock %}
