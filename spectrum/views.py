@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from . import models
 
@@ -14,3 +15,21 @@ def all_news_(request):
                   {"news": all_news})
 
 
+def detailed_ads_(request, year, month, day, slug):
+    detailed_ads = get_object_or_404(models.Ads,
+                                     publish__year=year,
+                                     publish__month=month,
+                                     publish__day=day,
+                                     slug=slug)
+    return render(request, "ads/detailed_ads.html",
+                  {"ad": detailed_ads})
+
+
+def detailed_news_(request, year, month, day, slug):
+    detailed_news = get_object_or_404(models.Ads,
+                                      publish__year=year,
+                                      publish__month=month,
+                                      publish__day=day,
+                                      slug=slug)
+    return render(request, "news/detailed_news.html",
+                  {"new": detailed_news})

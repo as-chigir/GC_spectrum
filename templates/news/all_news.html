@@ -7,6 +7,7 @@
         <h4>
             {{ one_news.body|truncatewords:10 }} <!-- первые N слов-->
         </h4>
-        Published: {{ one_news.publish }} by {{ one_news.author }}
+        Published: {{ one_news.publish }} by {{ one_news.author }} <br><br>
+        <a href="{{ one_news.get_absolute_url }}"> Читать </a>
     {% endfor %}
 {% endblock %}

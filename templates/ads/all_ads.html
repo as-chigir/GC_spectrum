@@ -7,6 +7,7 @@
         <h4>
             {{ ad.body|truncatewords:10 }} <!-- первые N слов-->
         </h4>
-        Published: {{ ad.publish }} by {{ ad.author }}
+        Published: {{ ad.publish }} by {{ ad.author }} <br><br>
+        <a href="{{ ad.get_absolute_url }}"> Перейти к объявлению </a>
     {% endfor %}
 {% endblock %}

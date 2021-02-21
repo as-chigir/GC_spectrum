@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} {{ ad.title }} {% endblock %}
+{% block content %}
+
+    <h3> {{ ad.title }} </h3>
+    <p>{{ ad.ads_type }}</p>
+    <h4>{{ ad.body }}</h4>
+    <p>Published: {{ ad.publish }} by {{ ad.author }}</p>
+    <a href="{% url "spectrum:all_ads_" %}"> НАЗАД </a>
+
+{% endblock %}

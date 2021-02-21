@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} {{ new.title }} {% endblock %}
+{% block content %}
+
+    <h3> {{ new.title }} </h3>
+    <h4>{{ new.body }}</h4>
+    <p>Published: {{ new.publish }} by {{ new.author }}</p>
+    <a href="{% url "spectrum:all_news_" %}"> НАЗАД </a>
+
+{% endblock %}
