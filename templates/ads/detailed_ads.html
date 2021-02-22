@@ -6,6 +6,7 @@
     <p>{{ ad.ads_type }}</p>
     <h4>{{ ad.body }}</h4>
     <p>Published: {{ ad.publish }} by {{ ad.author }}</p>
+    <a href="{% url "spectrum:share_ads" ad.id %}"> ОТВЕТИТЬ </a><br><br>
     <a href="{% url "spectrum:all_ads_" %}"> НАЗАД </a>
 
 {% endblock %}

@@ -6,9 +6,9 @@ from django.utils import timezone
 
 class Ads(models.Model):
     ADS_TYPE = [
-        ('buy', 'Куплю'),
-        ('sell', 'Продам'),
-        ('give_free', 'Отдам даром'),
+        ('Куплю', 'buy'),
+        ('Продам', 'sell'),
+        ('Отдам даром', 'give_free'),
     ]
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)

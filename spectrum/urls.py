@@ -14,4 +14,6 @@ urlpatterns = [
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.detailed_news_,
          name='detailed_news'),
+    path('<int:ad_id>/share/', views.share_ads,
+         name='share_ads'),
 ]
