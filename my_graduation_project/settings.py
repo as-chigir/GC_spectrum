@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'spectrum.apps.SpectrumConfig',  # перпенесли в самое начало
+    'spectrum.apps.SpectrumConfig',  # должно стоять в начале
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,3 +121,8 @@ STATIC_URL = '/static/'
 
 # для email`ов
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = '/spectrum/login/'
+LOGOUT_URL = '/spectrum/logout/'
+
+LOGIN_REDIRECT_URL = '/spectrum/'

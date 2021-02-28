@@ -1,4 +1,4 @@
-from django import  forms
+from django import forms
 
 
 class EmailMaterialForm(forms.Form):
@@ -6,3 +6,8 @@ class EmailMaterialForm(forms.Form):
     to_email = forms.EmailField()
     comment = forms.CharField(required=False,
                               widget=forms.Textarea)
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)

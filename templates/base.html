@@ -1,17 +1,26 @@
-{% load static %} <!-- подгрузили для css -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> {% block title%} Название странички {% endblock %} </title>
-<!-- управляющие инструкции заключается в фигурные скобки со знаком процент -->
-    <link href="{% static "styles.css" %}" rel="stylesheet"> <!-- добавили css стили -->
+    <title>{% block title%} ЗАГОЛОВОК {% endblock %}</title>
+    <link href="{% static "styles.css" %}" rel="stylesheet">
 </head>
 <body>
 
+<p>
+{% if request.user.is_authenticated %}
+    Добро пожаловать, {{ request.user.first_name }}! <br>
+    <a href="{% url "spectrum:logout" %}">Выйти</a>
+{% else %}
+    <a href="{% url "spectrum:login" %}">Войти</a>
+{% endif %}
+</p>
+
+<p>
 {% block content%}
 {% endblock %}
-
+</p>
 </body>
 </html>
 

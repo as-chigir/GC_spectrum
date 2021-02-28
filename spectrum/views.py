@@ -1,6 +1,14 @@
-from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+
+from django.core.mail import send_mail
+
+from django.http import HttpResponse
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+
 from . import constants
 from . import forms
 from . import models
@@ -18,6 +26,7 @@ def all_news_(request):
                   {"news": all_news})
 
 
+@login_required
 def detailed_ads_(request, year, month, day, slug):
     detailed_ads = get_object_or_404(models.Ads,
                                      publish__year=year,
@@ -66,3 +75,25 @@ def share_ads(request, ad_id):  # отправить комментарии
     return render(request,
                   'ads/share_ads.html',
                   {'ad': ad, 'form': form, 'sent': sent})
+
+
+def custom_login_(request):
+    if request.method == "POST":
+        form = forms.LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(
+                username=cd['username'],
+                password=cd['password'],
+            )
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponse('Пользователь вошел в систему!')
+                else:
+                    return HttpResponse('Пользователь не активен.')
+            else:
+                return HttpResponse('Плохие учетные данные.')
+    else:
+        form = forms.LoginForm()
+        return render(request, 'registration/login.html', {'form': form})
