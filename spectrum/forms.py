@@ -10,4 +10,4 @@ class EmailMaterialForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput)  # для закрытия пароля звездочками

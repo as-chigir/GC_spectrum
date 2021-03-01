@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <h1>User login:</h1>
+    <h1>Логин пользователя:</h1>
 
     {% if form.errors %}
         ERROR (i.e. Bad Credentials)
@@ -14,7 +14,7 @@
             <input type="hidden" name="next" value="{{ next }}">
             <input type="submit" value="Войти">
         </form>
-
+        <br><a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
     {% endif %}
 
 {% endblock %}
