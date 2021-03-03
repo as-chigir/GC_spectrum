@@ -37,7 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djoser',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,7 +131,7 @@ STATIC_URL = '/static/'
 # для email`ов
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_URL = '/spectrum/login/'
-LOGOUT_URL = '/spectrum/logout/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
 
-LOGIN_REDIRECT_URL = '/spectrum/'
+LOGIN_REDIRECT_URL = '/'

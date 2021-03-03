@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.shortcuts import render
+
 
 from django.core.mail import send_mail
 
@@ -28,13 +30,23 @@ def all_news_(request):
 
 @login_required
 def detailed_ads_(request, year, month, day, slug):
-    detailed_ads = get_object_or_404(models.Ads,
-                                     publish__year=year,
-                                     publish__month=month,
-                                     publish__day=day,
-                                     slug=slug)
+    ads = get_object_or_404(models.Ads,
+                            publish__year=year,
+                            publish__month=month,
+                            publish__day=day,
+                            slug=slug)
+    if request.method == "POST":
+        form = forms.CommentAdsForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.material = ads
+            comment.save()
+            return redirect(ads)
+    else:
+        form = forms.CommentAdsForm(request.POST)
     return render(request, "ads/detailed_ads.html",
-                  {"ad": detailed_ads})
+                  {"ads": ads,
+                   "form": form})
 
 
 def detailed_news_(request, year, month, day, slug):

@@ -51,3 +51,12 @@ class News(models.Model):
                              self.publish.month,
                              self.publish.day,
                              self.slug])
+
+
+class CommentAds(models.Model):
+    name = models.CharField(max_length=250)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    ads = models.ForeignKey(Ads,
+                            on_delete=models.CASCADE,
+                            related_name='comments_ads')

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %} Login page {% endblock %}
+{% block title %} Страница авторизации {% endblock %}
 
 {% block content %}
 
     <h1>Логин пользователя:</h1>
 
     {% if form.errors %}
-        ERROR (i.e. Bad Credentials)
+        ОШИБКА (Неверные учетные данные)
     {% else %}
         <form action="." method="post">
             {{ form.as_p }}

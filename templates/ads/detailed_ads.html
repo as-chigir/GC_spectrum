@@ -1,12 +1,22 @@
 {% extends "base.html" %}
-{% block title %} {{ ad.title }} {% endblock %}
+{% block title %} {{ ads.title }}{% endblock %}
 {% block content %}
+    <a href="{% url "spectrum:all_ads_" %}">НАЗАД к материалам</a>
+    <h1>{{ ads.title }}</h1>
+    <p>{{ ads.material_type }}</p>
+    <p>{{ ads.body }}</p>
+    <p>Опубликовано: {{ ads.publish }} by {{ ads.author }} <p>
 
-    <h3> {{ ad.title }} </h3>
-    <p>{{ ad.ads_type }}</p>
-    <h4>{{ ad.body }}</h4>
-    <p>Published: {{ ad.publish }} by {{ ad.author }}</p>
-    <a href="{% url "spectrum:share_ads" ad.id %}"> ОТВЕТИТЬ </a><br><br>
-    <a href="{% url "spectrum:all_ads_" %}"> НАЗАД </a>
+    <a href="{% url "spectrum:share_ads" ads.id %}">Поделиться материалом</a><br><br><br><br><br>
+    <h1>Добавить комментарий</h1> <br>
+    {% for comment in ads.comments.all %}
+        {{ comment.body }} <br><br><br>
+    {% endfor %}
+
+        <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Добавить комментарий">
+    </form>
 
 {% endblock %}
