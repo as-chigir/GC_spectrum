@@ -12,9 +12,10 @@
 {% if request.user.is_authenticated %}
     Добро пожаловать, {{ request.user.first_name }}! <br>
     <a href="{% url "spectrum:logout" %}"> Выйти </a><br>
-    <a href="{% url "spectrum:profile" %}"> Профиль </a>
+    <a href="{% url "spectrum:profile" %}"> Мой профиль </a>
 {% else %}
-    <a href="{% url "spectrum:login" %}"> Войти </a>
+    <a href="{% url "spectrum:login" %}"> Войти </a><br>
+    <a href="{% url "spectrum:register" %}"> Регистрация </a>
 {% endif %}
 </p>
 

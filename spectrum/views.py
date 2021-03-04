@@ -11,6 +11,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
+from .forms import UserRegistrationForm
+
 from . import constants
 from . import forms
 from . import models
@@ -113,4 +115,20 @@ def custom_login_(request):
 
 @login_required
 def view_profile(request):
-    return render(request, 'profile.html', {'user': request.user})
+    return render(request, 'profile/profile.html', {'user': request.user})
+
+
+def register(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            models.Profile.objects.create(user=new_user,
+                                          photo='unknown.jpg')
+            return render(request, 'profile/registration_complete.html',
+                          {'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'profile/register.html', {'user_form': user_form})
