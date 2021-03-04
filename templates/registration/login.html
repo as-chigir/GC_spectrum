@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% block title %} Страница авторизации {% endblock %}
-
 {% block content %}
-
     <h1>Логин пользователя:</h1>
-
     {% if form.errors %}
-        ОШИБКА (Неверные учетные данные)
+        ВНИМАНИЕ !!! Ваше имя пользователя и пароль не совпадают.
+             Пожалуйста, попробуйте еще раз
     {% else %}
+        <p>Пожалуйста, используйте следующую форму для входа в систему:</p>
+    {% endif %}
+    <div class="login-form">
         <form action="." method="post">
             {{ form.as_p }}
             {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}">
-            <input type="submit" value="Войти">
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <p><input type="submit" value="Войти"></p>
         </form>
+    </div>
         <br><a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
-    {% endif %}
-
 {% endblock %}

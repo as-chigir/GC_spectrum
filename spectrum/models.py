@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -60,3 +61,10 @@ class CommentAds(models.Model):
     ads = models.ForeignKey(Ads,
                             on_delete=models.CASCADE,
                             related_name='comments_ads')
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
+    birth = models.DateTimeField(blank=True, null=True)
+    photo = models.ImageField(upload_to="user/%Y/%m/%d", blank=True)

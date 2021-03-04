@@ -2,6 +2,7 @@ from . import models
 from django.contrib import admin
 
 admin.site.register(models.CommentAds)
+admin.site.register(models.Profile)
 
 
 @admin.register(models.Ads)

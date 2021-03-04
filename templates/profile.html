@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Person profile{% endblock %}
+{% block content %}
+
+    <h1>{{ material.title }}</h1>
+    <p>Имя пользователя: {{ user.first_name|add:user.last_name }}</p>
+    <p>День рождения: {{ user.profile.birth }}</p>
+    <p><img src = "{{ user.profile.photo.url }}" alt="alternate"></p>
+
+{% endblock %}

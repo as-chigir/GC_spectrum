@@ -101,11 +101,16 @@ def custom_login_(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Пользователь вошел в систему!')
+                    return HttpResponse('Аутентификация прошла успешно')
                 else:
-                    return HttpResponse('Пользователь не активен.')
+                    return HttpResponse('Учетная запись отключена')
             else:
-                return HttpResponse('Плохие учетные данные.')
+                return HttpResponse('Неверные данные')
     else:
         form = forms.LoginForm()
         return render(request, 'registration/login.html', {'form': form})
+
+
+@login_required
+def view_profile(request):
+    return render(request, 'profile.html', {'user': request.user})
