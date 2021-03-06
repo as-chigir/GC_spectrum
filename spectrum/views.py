@@ -2,13 +2,17 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-
 from django.core.mail import send_mail
+
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 
 from django.http import HttpResponse
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegistrationForm
@@ -20,8 +24,19 @@ from . import models
 
 def all_ads_(request):
     all_ads = models.Ads.objects.all()
+    current_page = Paginator(all_ads, 3)  # устанавливаем по 3 объявления на каждой странице
+    page = request.GET.get('page')
+    try:
+        ads = current_page.page(page)
+    except PageNotAnInteger:
+        # Если страница не является целым числом, поставим первую страницу
+        ads = current_page.page(1)
+    except EmptyPage:
+        # Если страница больше максимальной, доставить последнюю страницу результатов
+        ads = current_page.page(current_page.num_pages)
     return render(request, "ads/all_ads.html",
-                  {"ads": all_ads})
+                  {"page": page,
+                   "ads": ads})
 
 
 def all_news_(request):

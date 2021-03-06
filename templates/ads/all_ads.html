@@ -10,4 +10,6 @@
         Published: {{ ad.publish }} by {{ ad.author }} <br><br>
         <a href="{{ ad.get_absolute_url }}"> Перейти к объявлению </a>
     {% endfor %}
+    <br><br><br><br><br><br>
+        {% include "pagination.html" with page=ads %}
 {% endblock %}
