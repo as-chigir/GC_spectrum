@@ -140,10 +140,32 @@ def register(request):
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-            models.Profile.objects.create(user=new_user,
-                                          photo='unknown.jpg')
+            models.Profile.objects.create(user=new_user)
             return render(request, 'profile/registration_complete.html',
                           {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request, 'profile/register.html', {'user_form': user_form})
+
+
+def edit_profile(request):
+    if request.method == "POST":
+        user_form = forms.UserEditForm(data=request.POST,
+                                       instance=request.user)
+        profile_form = forms.ProfileEditForm(data=request.POST,
+                                             instance=request.user.profile,
+                                             files=request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            """
+            if not profile_form.cleaned_data['photo']:
+                profile_form.cleaned_data['photo'] = request.user.profile.photo
+            profile_form.save()
+            return render(request, 'profile/profile.html', {'user': request.user})
+            """
+    else:
+        user_form = forms.UserEditForm(instance=request.user)
+        profile_form = forms.ProfileEditForm(instance=request.user.profile)
+    return render(request, 'profile/edit_profile.html', {'user_form': user_form,
+                                                         'profile_form': profile_form})

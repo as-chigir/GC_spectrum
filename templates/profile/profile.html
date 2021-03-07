@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Профиль {% endblock %}
-
 {% block content %}
 
-    <h1> Профиль </h1>
-    <p>Имя пользователя: {{ user.first_name|add:user.last_name }}</p>
-    <p>День рождения: {{ user.profile.birth }}</p>
+    <p> Имя пользователя: {{ user.first_name| add:user.last_name }}</p>
+    <p> День рождения: {{ user.profile.birth }}</p>
     <p><img src = "{{ user.profile.photo.url }}" alt="alternate"></p>
+    <br>
+    <a href="{% url "spectrum:edit_profile" %}"> Редактировать профиль </a>
 
 {% endblock %}
