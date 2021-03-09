@@ -24,7 +24,7 @@ from . import models
 
 def all_ads_(request):
     all_ads = models.Ads.objects.all()
-    current_page = Paginator(all_ads, 3)  # устанавливаем по 3 объявления на каждой странице
+    current_page = Paginator(all_ads, 2)  # устанавливаем по 3 объявления на каждой странице
     page = request.GET.get('page')
     try:
         ads = current_page.page(page)

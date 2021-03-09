@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} {{ ads.title }}{% endblock %}
 {% block content %}
-    <a href="{% url "spectrum:all_ads_" %}">НАЗАД к материалам</a>
+    <a href="{% url "spectrum:all_ads_" %}">НАЗАД к объявлениям</a>
     <h1>{{ ads.title }}</h1>
     <p>{{ ads.material_type }}</p>
     <p>{{ ads.body }}</p>
