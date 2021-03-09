@@ -17,4 +17,13 @@
         </form>
     </div>
         <br><a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
+
+    <div class="social">
+        <ul>
+            <li class="vk">
+                <a href="{% url "social:begin" 'vk-oauth2'  %}">Sign in with VK</a>
+            </li>
+        </ul>
+    </div>
+
 {% endblock %}

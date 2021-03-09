@@ -20,4 +20,5 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('spectrum.urls', namespace='spectrum')),
+    path('social-auth/', include('social.apps.django_app.urls', namespace='social')),
 ]

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djoser',
     'bootstrap4',
+    'social.apps.django_app.default',
 ]
 
 REST_FRAMEWORK = {
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', # Добавила для ВК
             ],
         },
     },
@@ -139,3 +141,12 @@ LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'spectrum.authentication.EmailAuthBackend',
+    'social_core.backends.vk.VKOAuth2',          # бекенд авторизации через ВКонтакте
+)
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '7785938'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'NbY03SpEGHAyeG82hB5I'
