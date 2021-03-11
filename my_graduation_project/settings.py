@@ -72,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends', # Добавила для ВК
+                'social_django.context_processors.backends',  # Добавила для ВК
             ],
         },
     },
@@ -129,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
 # для email`ов
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

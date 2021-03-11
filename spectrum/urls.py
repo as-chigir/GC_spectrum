@@ -7,13 +7,15 @@ from django.urls import path
 from django.urls import reverse_lazy
 
 from . import views
-
+from django.views.generic.base import TemplateView
 
 app_name = 'spectrum'
 
 
 urlpatterns = [
-    path('', views.all_ads_, name='all_ads_'),
+    path('', views.main_, name='main_'),
+    path('about', views.about_, name='about_'),
+    path('ads', views.all_ads_, name='all_ads_'),
     path('news', views.all_news_, name='all_news_'),
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.detailed_ads_,

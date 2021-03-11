@@ -16,12 +16,16 @@
             <p><input type="submit" value="Войти"></p>
         </form>
     </div>
-        <br><a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
+        <a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
+    <br><br>
 
+    <p> Можете использовать для входа в систему:</p>
     <div class="social">
         <ul>
             <li class="vk">
-                <a href="{% url "social:begin" 'vk-oauth2'  %}">Sign in with VK</a>
+                <a href="{% url "social:begin" 'vk-oauth2'  %}">
+                    <img src="static/lvk.png" width="50" height="50">
+                </a>
             </li>
         </ul>
     </div>

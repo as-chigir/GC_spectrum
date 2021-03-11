@@ -1,6 +1,8 @@
-from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
-from django.shortcuts import render
+from . import constants
+from . import forms
+from . import models
+
+from .forms import UserRegistrationForm
 
 from django.core.mail import send_mail
 
@@ -8,18 +10,24 @@ from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 
-from django.http import HttpResponse
-
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 
 from django.contrib.auth.decorators import login_required
 
-from .forms import UserRegistrationForm
+from django.http import HttpResponse
 
-from . import constants
-from . import forms
-from . import models
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
+
+
+def main_(request):
+    return render(request, 'main.html')
+
+
+def about_(request):
+    return render(request, 'about.html')
 
 
 def all_ads_(request):
@@ -67,7 +75,7 @@ def detailed_ads_(request, year, month, day, slug):
 
 
 def detailed_news_(request, year, month, day, slug):
-    detailed_news = get_object_or_404(models.Ads,
+    detailed_news = get_object_or_404(models.News,
                                       publish__year=year,
                                       publish__month=month,
                                       publish__day=day,
