@@ -15,6 +15,7 @@ app_name = 'spectrum'
 urlpatterns = [
     path('', views.main_, name='main_'),
     path('about', views.about_, name='about_'),
+    path('weather', views.weather_, name='weather_'),
     path('ads', views.all_ads_, name='all_ads_'),
     path('news', views.all_news_, name='all_news_'),
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',

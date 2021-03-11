@@ -23,11 +23,15 @@ from django.shortcuts import render
 
 
 def main_(request):
-    return render(request, 'main.html')
+    return render(request, 'menu/main.html')
 
 
 def about_(request):
-    return render(request, 'about.html')
+    return render(request, 'menu/about.html')
+
+
+def weather_(request):
+    return render(request, 'menu/weather.html')
 
 
 def all_ads_(request):

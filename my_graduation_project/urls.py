@@ -21,7 +21,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/', TemplateView.as_view(template_name='about.html')),
+    path('about/', TemplateView.as_view(template_name='menu/about.html')),
+    path('weather/', TemplateView.as_view(template_name='menu/weather.html')),
     path('', include('spectrum.urls', namespace='spectrum')),
     path('social-auth/', include('social.apps.django_app.urls', namespace='social')),
 ]
