@@ -1,8 +1,10 @@
 from . import models
 from django.contrib import admin
+from .models import City
 
 admin.site.register(models.CommentAds)
 admin.site.register(models.Profile)
+admin.site.register(City)
 
 
 @admin.register(models.Ads)

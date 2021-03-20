@@ -1,8 +1,11 @@
 from . import models
+from .models import City
 
 from django import forms
 
 from django.contrib.auth.models import User
+from django.forms import ModelForm
+from django.forms import TextInput
 
 
 class EmailMaterialForm(forms.Form):
@@ -51,3 +54,13 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = models.Profile
         fields = ('birth', 'photo')
+
+
+class CityForm(ModelForm):
+    class Meta:
+        model = City
+        fields = ['name']
+        widgets = {'name': TextInput(attrs={'class': 'form-control',
+                                            'name': 'city',
+                                            'id': 'city',
+                                            'placeholder': 'Введите город'})}

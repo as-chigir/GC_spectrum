@@ -2,7 +2,10 @@ from . import constants
 from . import forms
 from . import models
 
+from .forms import CityForm
 from .forms import UserRegistrationForm
+
+from .models import City
 
 from django.core.mail import send_mail
 
@@ -35,14 +38,25 @@ def about_(request):
 def weather_(request):
     appid = 'b928b3d3e4e846273ace5bd7ccfd081d'
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
-    city = 'London'
-    res = requests.get(url.format(city)).json()
-    city_info = {
-        'city': city,
-        'temp': res["main"]["temp"],
-        'icon': res["weather"][0]["icon"]
-    }
-    context_weather = {'info': city_info}
+
+    if(request.method == 'POST'):
+        form = CityForm(request.POST)
+        form.save()
+
+    form = CityForm()  # для очистки строки запроса
+
+    cities = City.objects.all()
+    all_cities = []
+    for city in cities:
+        res = requests.get(url.format(city)).json()
+        city_info = {
+            'city': city.name,
+            'temp': res["main"]["temp"],
+            'icon': res["weather"][0]["icon"]
+        }
+        all_cities.append(city_info)
+
+    context_weather = {'all_info': all_cities, 'form': form}
     return render(request, 'menu/weather.html', context_weather)
 
 

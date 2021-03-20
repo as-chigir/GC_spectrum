@@ -70,6 +70,13 @@ class Profile(models.Model):
     photo = models.ImageField(upload_to="user/%Y/%m/%d", blank=True)
 
 
+class City(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+
 class Slider(models.Model):
     name = models.CharField(max_length=100,
                             help_text='просто название слайда до 100 символов, оно обязательно',

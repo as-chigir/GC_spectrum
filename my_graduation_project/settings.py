@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'djoser',
     'bootstrap4',
     'social.apps.django_app.default',
+    'social_django',
 ]
 
 REST_FRAMEWORK = {
