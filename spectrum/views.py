@@ -21,6 +21,8 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 
+import requests
+
 
 def main_(request):
     return render(request, 'menu/main.html')
@@ -31,7 +33,17 @@ def about_(request):
 
 
 def weather_(request):
-    return render(request, 'menu/weather.html')
+    appid = 'b928b3d3e4e846273ace5bd7ccfd081d'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
+    city = 'London'
+    res = requests.get(url.format(city)).json()
+    city_info = {
+        'city': city,
+        'temp': res["main"]["temp"],
+        'icon': res["weather"][0]["icon"]
+    }
+    context_weather = {'info': city_info}
+    return render(request, 'menu/weather.html', context_weather)
 
 
 def docs_(request):
