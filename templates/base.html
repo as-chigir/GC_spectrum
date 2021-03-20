@@ -15,40 +15,35 @@
 </head>
 
 <body>
-<ul class="nav nav-tabs">
+<ul class="nav nav-pills">
     <li class="nav-item">
-        <a class="nav-link {% if request.path == '/' %} active {% endif %}"
+        <a class="mt-2 btn btn-warning"
         href="{% url "spectrum:main_" %}"> Главная </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {% if request.path == '/all_ads_/' %} active {% endif %}"
+        <a class="mt-2 btn btn-warning"
         href="{% url "spectrum:all_ads_" %}"> Объявления </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {% if request.path == '/all_news_/' %} active {% endif %}"
+        <a class="mt-2 btn btn-warning"
         href="{% url "spectrum:all_news_" %}"> Новости </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {% if request.path == '/weather_/' %} active {% endif %}"
+        <a class="mt-2 btn btn-warning"
         href="{% url "spectrum:weather_" %}"> Погода </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {% if request.path == '/docs_/' %} active {% endif %}"
+        <a class="mt-2 btn btn-warning"
         href="{% url "spectrum:docs_" %}"> Документы </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {% if request.path == '/about_/' %} active {% endif %}"
+        <a class="mt-2 btn btn-warning"
         href="{% url "spectrum:about_" %}"> О товариществе </a>
     </li>
 </ul>
 
 {% block content%}
 {% endblock %}
-
-<!-- на jQuery (необходим для Bootstrap - х JavaScript плагины) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Включают все скомпилированные плагины (ниже), или включать отдельные файлы по мере необходимости -->
-<script type="text/javascript" src="{% static "js/bootstrap.js" %}></script>
 
 </body>
 </html>
