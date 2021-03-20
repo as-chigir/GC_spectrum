@@ -7,7 +7,7 @@
     <p>{{ ads.body }}</p>
     <p>Опубликовано: {{ ads.publish }} by {{ ads.author }} <p>
 
-    <a href="{% url "spectrum:share_ads" ads.id %}">Поделиться материалом</a><br><br><br><br><br>
+    <a href="{% url "spectrum:share_ads" ads.id %}">Отправить комментарий</a><br><br><br><br><br>
     <h1>Добавить комментарий</h1> <br>
     {% for comment in ads.comments.all %}
         {{ comment.body }} <br><br><br>
