@@ -33,6 +33,10 @@
         href="{% url "spectrum:weather_" %}"> Погода </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link {% if request.path == '/docs_/' %} active {% endif %}"
+        href="{% url "spectrum:docs_" %}"> Документы </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link {% if request.path == '/about_/' %} active {% endif %}"
         href="{% url "spectrum:about_" %}"> О товариществе </a>
     </li>

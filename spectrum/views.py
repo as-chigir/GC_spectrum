@@ -34,6 +34,10 @@ def weather_(request):
     return render(request, 'menu/weather.html')
 
 
+def docs_(request):
+    return render(request, 'menu/documents.html')
+
+
 def all_ads_(request):
     all_ads = models.Ads.objects.all()
     current_page = Paginator(all_ads, 2)  # устанавливаем по 3 объявления на каждой странице

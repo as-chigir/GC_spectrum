@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} Объявления {% endblock %}
+{% block content %}
+    <h1> Документы </h1>
+
+    {% if request.user.is_authenticated %}
+
+    <h3> Общие документы </h3>
+    <div>
+        <div class="doc-items">
+            <a href="/static/docs/Resolution of the Council of Ministers of the Republic of Belarus.docx">
+                <img width="50" height="50" src="static/img/word.png"> "Постановление совета министров РБ "Об утверждении правил
+                пользования жилыми помещениями, содержания жилых и вспомогательных помещений."
+            </a>
+        </div>
+        <div class="doc-items">
+            <a href="/static/docs/Land Code of the Republic of Belarus.pdf">
+                <img width="50" height="50" src="static/img/pdf.png"> "Кодекс Республики Беларусь о земле."
+            </a>
+        </div>
+    <div>
+            <a href="/static/docs/Just a check file.xlsx">
+                <img width="50" height="50" src="static/img/excel.png"> "Просто провеочный файл."
+            </a>
+        </div>
+    </div>
+
+    {% else %}
+        <p> Документы могут просматривать только члены товарищества </p>
+        <a href="{% url "spectrum:login" %}"> Войти </a><br>
+        <a href="{% url "spectrum:register" %}"> Регистрация </a>
+    {% endif %}
+
+
+{% endblock %}
