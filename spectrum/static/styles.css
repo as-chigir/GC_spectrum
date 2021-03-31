@@ -1,6 +1,5 @@
 body{
-    background: darkseagreen;
-    url(headerback.jpg); /* Цвет фона веб-страницы и путь к файлу */
+    background: darkseagreen url(headerback.jpg); /* Цвет фона веб-страницы и путь к файлу */
  }
 
 h1 {

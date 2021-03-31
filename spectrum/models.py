@@ -9,7 +9,7 @@ class Ads(models.Model):
     ADS_TYPE = [
         ('Куплю', 'buy'),
         ('Продам', 'sell'),
-        ('Отдам даром', 'give_free'),
+        ('Отдам даром', 'give_free')
     ]
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
@@ -24,8 +24,8 @@ class Ads(models.Model):
         choices=ADS_TYPE,
     )
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #    return self.title
 
     def get_absolute_url(self):
         return reverse('spectrum:detailed_ads',  # name из path в urls.py проекта

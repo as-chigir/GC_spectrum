@@ -7,7 +7,6 @@ from django.urls import path
 from django.urls import reverse_lazy
 
 from . import views
-from django.views.generic.base import TemplateView
 
 app_name = 'spectrum'
 
@@ -25,7 +24,8 @@ urlpatterns = [
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.detailed_news_,
          name='detailed_news'),
-    path('<int:ad_id>/share/', views.share_ads,
+    path('<int:ad_id>/share/',
+         views.share_ads,
          name='share_ads'),
     # вход и выход
     path('login/', auth_views.LoginView.as_view(), name='login'),
