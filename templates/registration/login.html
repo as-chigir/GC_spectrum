@@ -13,21 +13,16 @@
             {{ form.as_p }}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}"/>
-            <p><input type="submit" value="Войти"></p>
+            <p><input class="mt-2 btn btn-warning" type="submit" value="Войти"></p>
         </form>
     </div>
         <a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
     <br><br>
 
-    <h2> Можете использовать для входа в систему:</h2>
-    <div class="social">
-        <ul>
-            <li class="vk">
-                <a href="{% url "social:begin" 'vk-oauth2'  %}">
-                    <img src="static/lvk.png" width="50" height="50">
-                </a>
-            </li>
-        </ul>
-    </div>
+    <h4> Можете использовать для входа в систему:</h4>
+    <a href="{% url "social:begin" 'vk-oauth2'  %}">
+        <img src="static/img/vk2.png" width="50" height="50">
+    </a>
+
 
 {% endblock %}

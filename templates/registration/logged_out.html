@@ -3,7 +3,7 @@
 
 {% block content %}
     <h1> Страница выхода </h1>
-    <p> Вы вышли из системы. Вы можете
-        <a href="{% url "spectrum:login" %}"> войти снова. </a>
+    <p> Вы вышли из системы. <br> Вы можете
+        <a class="mt-2 btn btn-warning" href="{% url "spectrum:login" %}"> войти снова. </a>
     </p>
 {% endblock %}
