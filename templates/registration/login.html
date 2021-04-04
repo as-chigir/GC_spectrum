@@ -2,33 +2,32 @@
 {% block title %} Страница авторизации {% endblock %}
 {% block content %}
     <h1>Логин пользователя:</h1>
-    {% if form.errors %}
-        ВНИМАНИЕ !!! Ваше имя пользователя и пароль не совпадают.
-             Пожалуйста, попробуйте еще раз
-    {% else %}
-        <p>Пожалуйста, используйте следующую форму для входа в систему:</p>
-    {% endif %}
-    <div class="login-form">
-        <form action="." method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}"/>
-            <p><input class="mt-2 btn btn-warning" type="submit" value="Войти"></p>
-        </form>
-    </div>
+    <div class="alert alert-doc">
+        {% if form.errors %} ВНИМАНИЕ !!! Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз
+        {% else %}
+            <p>Пожалуйста, используйте следующую форму для входа в систему:</p>
+            <br>
+        {% endif %}
+        <div class="login-form">
+            <form action="." method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+                <p><input class="mt-2 btn btn-warning" type="submit" value="Войти"></p>
+            </form>
+        </div>
         <a href="{% url "spectrum:password_reset" %}"> Забыли пароль?</a>
-    <br><br>
-
-    <h4> Можете использовать для входа в систему:</h4>
-    <div class="social">
-        <ul>
-            <li class="vk">
-                <a class="mt-2 btn btn-warning" href="{% url 'social:begin' 'vk-oauth2'  %}"> ВКонтакте </a>
-            </li>
-            <li class="google">
-                <a class="mt-2 btn btn-warning" href="{% url "social:begin" "google" %}"> Google </a>
-            </li>
-        </ul>
+        <br><br>
+    </div>
+    <br>
+    <div class="alert alert-doc">
+        <p> Вы также можете использовать для входа в систему:</p>
+        <br>
+        <div class="social">
+            <a class="mt-2 btn btn-warning" href="{% url 'social:begin' 'vk-oauth2'  %}"> ВКонтакте </a>
+            <br>
+            <a class="mt-2 btn btn-warning" href="{% url "social:begin" "google" %}"> Google </a>
+        </div>
     </div>
 
 {% endblock %}
