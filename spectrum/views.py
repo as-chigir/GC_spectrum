@@ -108,16 +108,6 @@ def detailed_ads_(request, year, month, day, slug):
                    "form": form})
 
 
-def detailed_news_(request, year, month, day, slug):
-    detailed_news = get_object_or_404(models.News,
-                                      publish__year=year,
-                                      publish__month=month,
-                                      publish__day=day,
-                                      slug=slug)
-    return render(request, "news/detailed_news.html",
-                  {"new": detailed_news})
-
-
 def share_ads(request, ad_id):  # отправить комментарии
     ad = get_object_or_404(models.Ads, id=ad_id)
     sent = False
