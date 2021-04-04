@@ -20,9 +20,15 @@
     <br><br>
 
     <h4> Можете использовать для входа в систему:</h4>
-    <a href="{% url "social:begin" 'vk-oauth2'  %}">
-        <img src="static/img/vk2.png" width="50" height="50">
-    </a>
-
+    <div class="social">
+        <ul>
+            <li class="vk">
+                <a class="mt-2 btn btn-warning" href="{% url 'social:begin' 'vk-oauth2'  %}"> ВКонтакте </a>
+            </li>
+            <li class="google">
+                <a class="mt-2 btn btn-warning" href="{% url "social:begin" "google" %}"> Google </a>
+            </li>
+        </ul>
+    </div>
 
 {% endblock %}

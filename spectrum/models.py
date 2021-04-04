@@ -43,8 +43,8 @@ class News(models.Model):
                                related_name='user_news')
     publish = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
-        return self.title
+    #  def __str__(self):
+    #      return self.title
 
     def get_absolute_url(self):
         return reverse('spectrum:detailed_news',   # name из path в urls.py проекта
@@ -76,7 +76,7 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-
+"""
 class Slider(models.Model):
     name = models.CharField(max_length=100,
                             help_text='просто название слайда до 100 символов, оно обязательно',
@@ -100,3 +100,4 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.name
+"""

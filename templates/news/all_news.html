@@ -3,11 +3,14 @@
 {% block content %}
     <h1> НОВОСТИ </h1>
     {% for one_news in news %}
+        <div class="alert alert-doc">
         <h3>{{ one_news.title }}</h3> <!--используем двойные }}, чтобы отображался не текст-->
-        <h4>
-            {{ one_news.body|truncatewords:10 }} <!-- первые N слов-->
+        <h4 style="color:forestgreen">
+            {{ one_news.body|truncatewords:50 }} <!-- первые N слов-->
         </h4>
-        Published: {{ one_news.publish }} by {{ one_news.author }} <br><br>
-        <a href="{{ one_news.get_absolute_url }}"> Читать </a>
+        {{ one_news.publish }} Опубликовано {{ one_news.author }} <br><br>
+        <a href="{{ one_news.get_absolute_url}}"> Перейти к новости </a>
+        </div>
+        <br>
     {% endfor %}
 {% endblock %}

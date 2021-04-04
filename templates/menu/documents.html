@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block title %} Объявления {% endblock %}
 {% block content %}
+
     <h1> Документы </h1>
+    <div class="alert alert-doc">
 
     {% if request.user.is_authenticated %}
 
-    <h3> Общие документы </h3>
+    <h3  align="center"> Общие документы </h3>
     <div>
         <div class="doc-items">
             <a href="/static/docs/Resolution of the Council of Ministers of the Republic of Belarus.docx">
@@ -31,5 +33,5 @@
         <a href="{% url "spectrum:register" %}"> Регистрация </a>
     {% endif %}
 
-
+    </div>
 {% endblock %}

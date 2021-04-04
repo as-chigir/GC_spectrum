@@ -3,13 +3,19 @@
 {% block content %}
     <h1> ОБЪЯВЛЕНИЯ </h1>
     {% for ad in ads %}
+        <div class="alert alert-doc">
         <h3>{{ ad.title }}</h3> <!--используем двойные }}, чтобы отображался не текст-->
-        <h4>
-            {{ ad.body|truncatewords:10 }} <!-- первые N слов-->
+        <p style="color:red">{{ ad.ads_type }}</p>
+            <br>
+       <h4 style="color:forestgreen">
+            {{ ad.body|truncatewords:50 }} <!-- первые N слов-->
         </h4>
         Published: {{ ad.publish }} by {{ ad.author }} <br><br>
         <a href="{{ ad.get_absolute_url }}"> Перейти к объявлению </a>
+        </div>
+        <br>
     {% endfor %}
-    <br><br><br><br><br><br>
-        {% include "pagination.html" with page=ads %}
+    <div align="center">
+        {% include "pagination.html" with page=ads%}
+    </div>
 {% endblock %}

@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 {% block title %} {{ ads.title }}{% endblock %}
 {% block content %}
-    <a href="{% url "spectrum:all_ads_" %}">НАЗАД к объявлениям</a>
-    <h1>{{ ads.title }}</h1>
-    <p>{{ ads.material_type }}</p>
-    <p>{{ ads.body }}</p>
-    <p>Опубликовано: {{ ads.publish }} by {{ ads.author }} <p>
-
-    <a href="{% url "spectrum:share_ads" ads.id %}">Отправить комментарий</a><br><br><br><br><br>
-    <h1>Добавить комментарий</h1> <br>
+    <div class="alert alert-doc">
+        <a class="mt-2 btn btn-warning" href="{% url "spectrum:all_ads_" %}">НАЗАД к объявлениям</a>
+    <br>
+        <h3>{{ ads.title }}</h3>
+        <p style="color:red">{{ ads.ads_type }}</p>
+        <br>
+        <h4 style="color:forestgreen">{{ ads.body }}</h4>
+        <br>
+        <p>Опубликовано: {{ ads.publish }} by {{ ads.author }} <p>
+        <br>
+        <a class="mt-2 btn btn-warning" href="{% url "spectrum:share_ads" ads.id %}">Написать автору</a><br><br><br><br><br>
+    </div>
+    <br>
+    <div class="alert alert-doc">
+    <h3>Добавить комментарий</h3> <br>
     {% for comment in ads.comments.all %}
         {{ comment.body }} <br><br><br>
     {% endfor %}
@@ -18,5 +25,6 @@
         {% csrf_token %}
         <input type="submit" value="Добавить комментарий">
     </form>
+    </div>
 
 {% endblock %}
