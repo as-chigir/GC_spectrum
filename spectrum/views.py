@@ -167,17 +167,21 @@ def view_profile(request):
 
 def register(request):
     if request.method == "POST":
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
+        form = forms.UserRegistrationForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            new_user = form.save(commit=False)
+            new_user.set_password(
+                cd['password'],
+            )
             new_user.save()
-            models.Profile.objects.create(user=new_user)
+            models.Profile.objects.create(user=new_user,
+                                          photo='unknown.jpg')
             return render(request, 'profile/registration_complete.html',
-                          {'new_user': new_user})
+                          {'user': new_user})
     else:
-        user_form = UserRegistrationForm()
-    return render(request, 'profile/register.html', {'user_form': user_form})
+        form = forms.UserRegistrationForm()
+        return render(request, 'profile/register.html', {'form': form})
 
 
 def edit_profile(request):

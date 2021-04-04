@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 {% block title %} Регистрация пользователя {% endblock %}
 {% block content %}
-
     <h1>Регистрация пользователя</h1>
-
-    <p> Пожалуйста, зарегистрируйтесь, используя следующую форму: </p>
-
-    <form action=".." method="post">
-        {{ user_form.as_p }}
+    <div class="alert alert-doc">
+    <h4> Пожалуйста, зарегистрируйтесь, используя следующую форму: </h4>
+    <form action="." method="post">
+        {{ form.as_p }}
         {% csrf_token %}
         <input type="submit" value="Зарегистрироваться">
     </form>
-
+    </div>
 {% endblock %}
