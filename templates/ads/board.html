@@ -26,7 +26,7 @@
                     <img style="width:100%; margin-bottom:8px" alt="фото" width="200" height="200" src="{% if board.image %}{{ board.image.url }}{% else %}{% static "static/img/no_image.png" %}{% endif %}">
                 </a>
                 <a href="{{ board.get_absolute_url }}">{{ board.name }}</a><br>
-                ${{ board.price }}
+                {{ board.price }} бел.рублей
             </div>
         {% endfor %}
     </div>
