@@ -5,11 +5,11 @@
 {% endblock %}
 {% block content %}
     <h1> Объявления </h1>
-    <div id="sidebar">
+    <div style="width:220px; height: 350px; padding:30px 20px 0 0; float:left; background:#fcf1b8; border-radius:4px">
         <h3> Категории </h3>
-        <ul>
-            <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url "spectrum:board_list" %}"> ВСЕ </a>
+        <ul style="margin:0; padding:0">
+            <li style="margin:0; list-style:none; padding:10px 14px" {% if not category %}{% endif %}>
+                <a style="display:block" href="{% url "spectrum:board_list" %}"> ВСЕ </a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == c.slug %}class="selected"{% endif %}>
@@ -18,12 +18,12 @@
             {% endfor %}
         </ul>
     </div>
-    <div id="main" class="board-list">
-        <h3>{% if category %}{{ category.name }}{% else %} Объявления {% endif %}</h3>
+    <div style="float:left; width: 80%; height: 350px; margin-right:-220px; overflow:hidden; background: #fcf1b8" class="board-list">
+        <h3>{% if category %}{{ category.name }}{% else %} Все объявления {% endif %}</h3>
         {% for board in boards %}
-            <div class="item">
+            <div style="width:25%; padding:10px 20px 10px 0; float:left; text-align:center; line-height:1.2">
                 <a href="{{ board.get_absolute_url }}">
-                    <img alt="фото" width="200" height="200" src="{% if board.image %}{{ board.image.url }}{% else %}{% static "static/img/no_image.png" %}{% endif %}">
+                    <img style="width:100%; margin-bottom:8px" alt="фото" width="200" height="200" src="{% if board.image %}{{ board.image.url }}{% else %}{% static "static/img/no_image.png" %}{% endif %}">
                 </a>
                 <a href="{{ board.get_absolute_url }}">{{ board.name }}</a><br>
                 ${{ board.price }}

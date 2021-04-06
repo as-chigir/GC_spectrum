@@ -4,11 +4,12 @@
     {% if category %}{{ category.title }}{% else %} Объявления {% endif %}
 {% endblock %}
 {% block content %}
-    <div class="board-detail">
-        <img alt="фото" width="200" height="200" src="{% if board.image %}{{ board.image.url }}{% else %}{% static "static/img/no_image.png" %}{% endif %}">
-        <h1>{{ board.name }}</h1>
-        <h2><a href="{{ board.category.get_absolute_url }}">{{ board.category }}</a></h2>
-        <p class="price">${{ board.price }}</p>
+    <h3 align="center">{{ board.name }}</h3>
+    <div class="alert alert-doc" align="center">
+        <img alt="фото" width=700px src="{% if board.image %}{{ board.image.url }}{% else %}{% static "static/img/no_image.png" %}{% endif %}">
+        <h4><a href="{{ board.category.get_absolute_url }}">{{ board.category }}</a></h4>
+        <p style="color:#333; font-size:28px; font-weight:bold">${{ board.price }}</p>
+        <br>
         {{ board.description|linebreaks }}
     </div>
 {% endblock %}

@@ -48,7 +48,7 @@ urlpatterns = [
     path('<slug:category_slug>/',
          views.board_list,
          name='board_list_by_category'),
-    path('<int:id>/<slug:slug>/',
+    path('<int:board_id>/<slug:slug>/',
          views.board_detail,
          name='board_detail'),
 ]
