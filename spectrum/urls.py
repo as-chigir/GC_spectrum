@@ -43,6 +43,12 @@ urlpatterns = [
     path('profile/', views.view_profile, name='profile'),
     path('register/', views.register, name='register'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path(r'^(?P<category_slug>[-\w]+)/$',
+        views.board_list,
+        name='board_list_by_category'),
+    path(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$',
+        views.board_detail,
+        name='board_detail'),
 
 ]
 

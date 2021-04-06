@@ -24,8 +24,8 @@ class Ads(models.Model):
         choices=ADS_TYPE,
     )
 
-    # def __str__(self):
-    #    return self.title
+    def __str__(self):
+       return self.title
 
     def get_absolute_url(self):
         return reverse('spectrum:detailed_ads',  # name из path в urls.py проекта
@@ -92,3 +92,40 @@ class Slider(models.Model):
     def __str__(self):
         return self.name
 """
+
+class Category(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('spectrum:board_list_by_category',
+                       args=[self.slug])
+
+
+class Product(models.Model):
+    category = models.ForeignKey(Category, related_name='board')
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True)
+    image = models.ImageField(upload_to='board/%Y/%m/%d', blank=True)
+    description = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('name',)
+        index_together = (('id', 'slug'),)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('spectrum:board_detail',
+                       args=[self.id, self.slug])

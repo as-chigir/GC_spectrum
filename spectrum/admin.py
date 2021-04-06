@@ -22,3 +22,15 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ('title', 'body')
     prepopulated_fields = {'slug': ('title',)}
     ordering = ('publish', 'title')
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+admin.site.register(Category, CategoryAdmin)
+
+class BoardAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug', 'created', 'updated']
+    list_filter = ['available', 'created', 'updated']
+    search_fields = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
+admin.site.register(Board, BoardAdmin)

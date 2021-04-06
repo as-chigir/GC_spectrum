@@ -6,6 +6,7 @@ from .forms import CityForm
 from .forms import UserRegistrationForm
 
 from .models import City
+from .models import Category, Board
 
 from django.core.mail import send_mail
 
@@ -201,3 +202,25 @@ def edit_profile(request):
         profile_form = forms.ProfileEditForm(instance=request.user.profile)
     return render(request, 'profile/edit_profile.html', {'user_form': user_form,
                                                          'profile_form': profile_form})
+
+def board_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    boards = Board.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        boards = boards.filter(category=category)
+    return render(request,
+                  'ads/board.html',
+                  {'category': category,
+                   'categories': categories,
+                   'boards': boards})
+
+
+def board_detail(request, id, slug):
+    board = get_object_or_404(Board,
+                                id=id,
+                                slug=slug)
+    return render(request,
+                  'ads/board_detail.html',
+                  {'board': board})
