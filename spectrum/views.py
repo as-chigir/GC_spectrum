@@ -67,7 +67,7 @@ def docs_(request):
 
 def all_ads_(request):
     all_ads = models.Ads.objects.all()
-    current_page = Paginator(all_ads, 2)  # устанавливаем по 3 объявления на каждой странице
+    current_page = Paginator(all_ads, 2)
     page = request.GET.get('page')
     try:
         ads = current_page.page(page)
@@ -75,7 +75,6 @@ def all_ads_(request):
         # Если страница не является целым числом, поставим первую страницу
         ads = current_page.page(1)
     except EmptyPage:
-        # Если страница больше максимальной, доставить последнюю страницу результатов
         ads = current_page.page(current_page.num_pages)
     return render(request, "ads/all_ads.html",
                   {"page": page,
@@ -195,13 +194,16 @@ def edit_profile(request):
             if not profile_form.cleaned_data['photo']:
                 profile_form.cleaned_data['photo'] = request.user.profile.photo
             profile_form.save()
-            return render(request, 'profile/profile.html', {'user': request.user})
+            return render(request, 'profile/profile.html',
+            {'user': request.user})
             """
     else:
         user_form = forms.UserEditForm(instance=request.user)
         profile_form = forms.ProfileEditForm(instance=request.user.profile)
-    return render(request, 'profile/edit_profile.html', {'user_form': user_form,
-                                                         'profile_form': profile_form})
+    return render(request, 'profile/edit_profile.html',
+                  {'user_form': user_form,
+                   'profile_form': profile_form})
+
 
 def board_list(request, category_slug=None):
     category = None
@@ -217,10 +219,8 @@ def board_list(request, category_slug=None):
                    'boards': boards})
 
 
-def board_detail(request, id, slug):
-    board = get_object_or_404(Board,
-                                id=id,
-                                slug=slug)
+def board_detail(request, board_id, slug):
+    board = get_object_or_404(Board, id=board_id, slug=slug)
     return render(request,
                   'ads/board_detail.html',
                   {'board': board})
