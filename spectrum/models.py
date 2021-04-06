@@ -24,11 +24,11 @@ class Ads(models.Model):
         choices=ADS_TYPE,
     )
 
-    # def __str__(self):
-    #    return self.title
+    def __str__(self):
+        return self.title
 
     def get_absolute_url(self):
-        return reverse('spectrum:detailed_ads',  # name из path в urls.py проекта
+        return reverse('spectrum:detailed_ads',
                        args=[self.publish.year,
                              self.publish.month,
                              self.publish.day,
@@ -42,7 +42,6 @@ class News(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='user_news')
     publish = models.DateTimeField(default=timezone.now)
-
 
 
 class CommentAds(models.Model):
@@ -67,22 +66,27 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+
 """
 class Slider(models.Model):
     name = models.CharField(max_length=100,
-                            help_text='просто название слайда до 100 символов, оно обязательно',
+                            help_text='просто название слайда до 100 символов,
+                            оно обязательно',
                             verbose_name='Название слайда')
     title = models.CharField(blank=True,
                              max_length=150,
-                             help_text='до 150 символов, заполнять не обязательно',
+                             help_text='до 150 символов, заполнять не
+                             обязательно',
                              verbose_name='Заголовок на слайде')
     description = models.CharField(blank=True,
                                    max_length=150,
-                                   help_text='до 150 символов, заполнять не обязательно',
+                                   help_text='до 150 символов, заполнять не
+                                   обязательно',
                                    verbose_name='Текст под заголовком')
     sliderimg = models.ImageField(blank=False,
                                   upload_to='slider/',
-                                  help_text='изображение окажется до 1920*1024рх, поэтому лучше брать большое',
+                                  help_text='изображение окажется до
+                                  1920*1024рх, поэтому лучше брать большое',
                                   verbose_name='Добавить изображение')
 
     class Meta:
@@ -92,3 +96,42 @@ class Slider(models.Model):
     def __str__(self):
         return self.name
 """
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('spectrum:board_list',
+                       args=[self.slug])
+
+
+class Board(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 related_name='board')
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True)
+    image = models.ImageField(upload_to='board/%Y/%m/%d', blank=True)
+    description = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('name',)
+        index_together = (('id', 'slug'),)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('spectrum:board_detail',
+                       args=[self.id, self.slug])

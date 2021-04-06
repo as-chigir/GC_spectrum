@@ -6,6 +6,7 @@ from .forms import CityForm
 from .forms import UserRegistrationForm
 
 from .models import City
+from .models import Category, Board
 
 from django.core.mail import send_mail
 
@@ -66,7 +67,7 @@ def docs_(request):
 
 def all_ads_(request):
     all_ads = models.Ads.objects.all()
-    current_page = Paginator(all_ads, 2)  # устанавливаем по 3 объявления на каждой странице
+    current_page = Paginator(all_ads, 2)
     page = request.GET.get('page')
     try:
         ads = current_page.page(page)
@@ -74,7 +75,6 @@ def all_ads_(request):
         # Если страница не является целым числом, поставим первую страницу
         ads = current_page.page(1)
     except EmptyPage:
-        # Если страница больше максимальной, доставить последнюю страницу результатов
         ads = current_page.page(current_page.num_pages)
     return render(request, "ads/all_ads.html",
                   {"page": page,
@@ -198,10 +198,33 @@ def edit_profile(request):
             if not profile_form.cleaned_data['photo']:
                 profile_form.cleaned_data['photo'] = request.user.profile.photo
             profile_form.save()
-            return render(request, 'profile/profile.html', {'user': request.user})
+            return render(request, 'profile/profile.html',
+            {'user': request.user})
             """
     else:
         user_form = forms.UserEditForm(instance=request.user)
         profile_form = forms.ProfileEditForm(instance=request.user.profile)
-    return render(request, 'profile/edit_profile.html', {'user_form': user_form,
-                                                         'profile_form': profile_form})
+    return render(request, 'profile/edit_profile.html',
+                  {'user_form': user_form,
+                   'profile_form': profile_form})
+
+
+def board_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    boards = Board.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        boards = boards.filter(category=category)
+    return render(request,
+                  'ads/board.html',
+                  {'category': category,
+                   'categories': categories,
+                   'boards': boards})
+
+
+def board_detail(request, board_id, slug):
+    board = get_object_or_404(Board, id=board_id, slug=slug)
+    return render(request,
+                  'ads/board_detail.html',
+                  {'board': board})

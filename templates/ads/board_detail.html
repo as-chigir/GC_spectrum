@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Объявления{% endif %}
+{% endblock %}
+{% block content %}
+    <div class="board-detail">
+        <img src="{% if board.image %}{{ board.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        <h1>{{ board.name }}</h1>
+        <h2><a href="{{ board.category.get_absolute_url }}">{{ board.category }}</a></h2>
+        <p class="price">какой-то текст</p>
+        еще текст
+    </div>
+{% endblock %}

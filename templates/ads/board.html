@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Boards{% endif %}
+{% endblock %}
+{% block content %}
+    <div id="sidebar">
+        <h3>Категории</h3>
+        <ul>
+            <li {% if not category %}class="selected"{% endif %}>
+                <a href="{% url "spectrum:board_list" %}">Все</a>
+            </li>
+            {% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="main" class="board-list">
+        <h1>{% if category %}{{ category.name }}{% else %}Boards{% endif %}</h1>
+        {% for board in boards %}
+            <div class="item">
+                <a href="{{ board.get_absolute_url }}">
+                    <img src="{% if board.image %}{{ board.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                </a>
+                <a href="{{ board.get_absolute_url }}">{{ board.name }}</a><br>
+                что-то написано
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
