@@ -32,7 +32,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Board)
 class BoardAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'created', 'updated']
-    list_filter = ['created', 'updated']
-    search_fields = ('name', 'description')
+    list_display = ['name', 'slug', 'price', 'stock', 'available', 'created', 'updated']
+    list_filter = ['available', 'created', 'updated']
+    list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {'slug': ('name',)}

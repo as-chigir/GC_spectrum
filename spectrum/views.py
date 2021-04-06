@@ -3,7 +3,6 @@ from . import forms
 from . import models
 
 from .forms import CityForm
-from .forms import UserRegistrationForm
 
 from .models import City
 from .models import Category, Board
@@ -224,7 +223,10 @@ def board_list(request, category_slug=None):
 
 
 def board_detail(request, board_id, slug):
-    board = get_object_or_404(Board, id=board_id, slug=slug)
+    board = get_object_or_404(Board,
+                              id=board_id,
+                              slug=slug,
+                              available=True)
     return render(request,
                   'ads/board_detail.html',
                   {'board': board})

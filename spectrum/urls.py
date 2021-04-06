@@ -18,12 +18,6 @@ urlpatterns = [
     path('documents', views.docs_, name='docs_'),
     path('ads', views.all_ads_, name='all_ads_'),
     path('news', views.all_news_, name='all_news_'),
-    path('<slug:category_slug>/',
-         views.board_list,
-         name='board_list'),
-    path('<int:id>/<slug:slug>/',
-         views.board_detail,
-         name='board_detail'),
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.detailed_ads_,
          name='detailed_ads'),
@@ -50,6 +44,13 @@ urlpatterns = [
     path('profile/', views.view_profile, name='profile'),
     path('register/', views.register, name='register'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('board', views.board_list, name='board_list'),
+    path('<slug:category_slug>/',
+         views.board_list,
+         name='board_list_by_category'),
+    path('<int:id>/<slug:slug>/',
+         views.board_detail,
+         name='board_detail'),
 ]
 
 if settings.DEBUG:

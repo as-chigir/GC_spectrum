@@ -29,3 +29,76 @@ h4 {
     background: #fcf1b8;
 }
 
+#sidebar {
+    width:220px;
+    padding:30px 20px 0 0;
+    float:left;
+}
+
+#sidebar ul{
+    margin:0;
+    padding:0;
+}
+
+#sidebar ul li {
+    margin:0;
+    list-style:none;
+    padding:10px 14px;
+}
+
+#sidebar ul li a {
+    display:block;
+}
+
+#sidebar ul li.selected {
+    background:#5993bb;
+    border-radius:4px;
+}
+
+#sidebar ul li.selected a {
+    color:#fff;
+}
+
+#main {
+    float: left;
+    width: 96%;
+    margin-right: -220px;
+    overflow: hidden;
+}
+
+.board-list .item {
+    width:25%;
+    padding:10px 20px 10px 0;
+    float:left;
+    text-align:center;
+    line-height:1.2;
+}
+
+.board-list .item img {
+    width:100%;
+    margin-bottom:8px;
+}
+
+.board-detail {
+    text-align:justify;
+}
+
+.board-detail .price {
+    color:#333;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.board-detail img {
+    width:40%;
+    float:left;
+    padding:0 20px 20px 0;
+}
+
+.board-detail h1 {
+    margin-bottom:0;
+}
+
+.board-detail h2 {
+    margin-top:10px;
+}

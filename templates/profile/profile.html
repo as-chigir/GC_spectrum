@@ -4,7 +4,7 @@
 
     <h4> Имя пользователя: {{ user.first_name}} {{ user.last_name }}</h4>
     <h4> День рождения: {{ user.profile.birth }}</h4>
-    <p><img width="250" height="250" src = "{{ user.profile.photo.url }}" alt="alternate"></p>
+    <p><img img alt="photo" width="250" height="250" src = "{{ user.profile.photo.url }}" alt="alternate"></p>
     <br>
     <a class="mt-2 btn btn-warning" href="{% url "spectrum:edit_profile" %}"> Редактировать профиль </a>
 
