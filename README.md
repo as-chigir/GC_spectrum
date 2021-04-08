@@ -6,9 +6,9 @@ Clone repository and install requirements in your virtual environment
 
 pip install -r requirements.txt
 
-Create migrations.
-python manage.py makemigrations
+Create migrations:
+python manage.py makemigrations and
 python manage.py migrate
 
-Then start the server.\n
+Then start the server:
 python manage.py runserver
