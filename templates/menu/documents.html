@@ -25,9 +25,9 @@
                 </div>
             </div>
         {% else %}
-            <p> Документы могут просматривать только члены товарищества </p>
-            <a href="{% url "spectrum:login" %}"> Войти </a><br>
-            <a href="{% url "spectrum:register" %}"> Регистрация </a>
+            <h3> Документы могут просматривать только члены товарищества </h3>
+            <a class="mt-2 btn btn-warning" href="{% url "spectrum:login" %}"> Войти </a><br>
+            <a class="mt-2 btn btn-warning" href="{% url "spectrum:register" %}"> Регистрация </a>
         {% endif %}
     </div>
 {% endblock %}
