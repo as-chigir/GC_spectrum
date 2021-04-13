@@ -61,8 +61,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
+                'social_django.context_processors.backends',  # add this
+                'social_django.context_processors.login_redirect',  # add this
             ],
         },
     },
@@ -100,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -125,25 +124,29 @@ STATIC_ROOT = 'static'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/auth/login/google-oauth2'
 LOGOUT_URL = '/logout/'
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'spectrum.authentication.EmailAuthBackend',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '7785938'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'NbY03SpEGHAyeG82hB5I'
+VK_APP_ID = '7785938'
+VKONTAKTE_APP_ID = VK_APP_ID
+VK_API_SECRET = 'NbY03SpEGHAyeG82hB5I'
+VKONTAKTE_APP_SECRET = VK_API_SECRET
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '713670158055-nhqda1bcnoo29h0evnn3j6qph9o6m95a.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9m50ag1Jd6elR3OSri420UK1'
+GOOGLE_OAUTH2_CLIENT_ID = '713670158055-nhqda1bcnoo29h0evnn3j6qph9o6m95a.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = '9m50ag1Jd6elR3OSri420UK1'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True

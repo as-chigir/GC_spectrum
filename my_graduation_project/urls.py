@@ -25,5 +25,5 @@ urlpatterns = [
     path('weather/', TemplateView.as_view(template_name='menu/weather.html')),
     path('documents/', TemplateView.as_view(template_name='menu/documents.html')),
     path('', include('spectrum.urls', namespace='spectrum')),
-    path('', include('social_django.urls', namespace='social')),
+    path('social-auth/', include('social_django.urls', namespace="social")),
 ]
