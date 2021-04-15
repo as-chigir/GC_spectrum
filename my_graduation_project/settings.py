@@ -14,7 +14,7 @@ SECRET_KEY = '8-y5ymspn42pp8s$-pq5fb__qb034jp4z3(0aj6=fa*)(07_16'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'djoser',
     'bootstrap4',
     'social_django',
-    'social.apps.django_app.default',
 ]
 
 REST_FRAMEWORK = {
@@ -124,7 +123,7 @@ STATIC_ROOT = 'static'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-LOGIN_URL = '/auth/login/google-oauth2'
+LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 LOGIN_REDIRECT_URL = '/'
@@ -134,18 +133,19 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'spectrum.authentication.EmailAuthBackend',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.vk.VKOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
 )
 
-VK_APP_ID = '7785938'
+VK_APP_ID = '7823402'
 VKONTAKTE_APP_ID = VK_APP_ID
-VK_API_SECRET = 'NbY03SpEGHAyeG82hB5I'
+VK_API_SECRET = 'YpHfcFeTgXx5sL8xVC59'
 VKONTAKTE_APP_SECRET = VK_API_SECRET
 
-GOOGLE_OAUTH2_CLIENT_ID = '713670158055-nhqda1bcnoo29h0evnn3j6qph9o6m95a.apps.googleusercontent.com'
-GOOGLE_OAUTH2_CLIENT_SECRET = '9m50ag1Jd6elR3OSri420UK1'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '713670158055-nhqda1bcnoo29h0evnn3j6qph9o6m95a.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9m50ag1Jd6elR3OSri420UK1'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
