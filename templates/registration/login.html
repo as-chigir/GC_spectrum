@@ -24,9 +24,12 @@
         <p> Вы также можете использовать для входа в систему:</p>
         <br>
         <div>
-            <a class="mt-2 btn btn-warning" href="{% url 'social:begin' 'vk-oauth2'  %}"> ВКонтакте </a>
-            <br>
-            <a class="mt-2 btn btn-warning" href="{% url "social:begin" "google-oauth2" %}"> Google </a>
+            <a class="mt-2 btn btn-warning" href="{% url 'social:begin' 'vk-oauth2'  %}">
+                <img src="static/img/vk.png" width="32" height="32" border="0" alt="VK">
+            </a>
+            <a class="mt-2 btn btn-warning" href="{% url "social:begin" "google-oauth2" %}">
+                <img src="static/img/google.png" width="32" height="32" border="0" alt="Google">
+            </a>
         </div>
     </div>
 
